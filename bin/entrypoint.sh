@@ -5,7 +5,7 @@ CMD="catalina.sh run"
 IPADDRESS=$(curl 'https://api.ipify.org')
 echo "IP ADDRESS: ${IPADDRESS}"
 
-AWS_ACCESS_KEY_ID=${FCREPO_AWS_USER} AWS_SECRET_ACCESS_KEY=${FCREPO_AWS_PASSWORD} aws ssm put-parameter --type String --name /pass/${ENVIRONMENT}/fcrepo/ip-address --value ${IPADDRESS}
+AWS_ACCESS_KEY_ID=${FCREPO_AWS_USER} AWS_SECRET_ACCESS_KEY=${FCREPO_AWS_PASSWORD} aws ssm put-parameter --type String --name /pass/${ENVIRONMENT}/fcrepo/ip-address --value ${IPADDRESS} --overwrite
 
 if [ $# -eq 1 ]; then
     CMD=${1}
