@@ -5,7 +5,7 @@ CMD="catalina.sh run"
 IPADDRESS=$(curl 'https://api.ipify.org')
 echo "IP ADDRESS: ${IPADDRESS}"
 
-AWS_ACCESS_KEY_ID=${FCREPO_AWS_USER} AWS_SECRET_ACCESS_KEY=${FCREPO_AWS_PASSWORD} aws ssm put-parameter --type String --name /pass/${ENVIRONMENT}/fcrepo/ip-address --value ${IPADDRESS}
+AWS_ACCESS_KEY_ID=${FCREPO_AWS_USER} AWS_SECRET_ACCESS_KEY=${FCREPO_AWS_PASSWORD} aws ssm put-parameter --type String --name /pass/${ENVIRONMENT}/fcrepo/ip-address --value ${IPADDRESS} --overwrite
 
 if [ $# -eq 1 ]; then
     CMD=${1}
@@ -32,7 +32,9 @@ else
   fi
 fi
 
-OPTS="-Dfcrepo.log=${FCREPO_LOG_LEVEL}
+OPTS="-Dfcrepo.log=${FCREPO_LOG_LEVEL}					     \
+      -Dfcrepo.home=${FCREPO_HOME}					     \
+      -Dfcrepo.properties.management=${FCREPO_PROPERTIES_MANAGEMENT}	     \
       -Dfcrepo.log.auth=${FCREPO_AUTH_LOG_LEVEL}                             \
       -Dfcrepo.jms.baseUrl=${_JMS_BASEURL}                                   \
       -Dfcrepo.modeshape.configuration=${FCREPO_MODESHAPE_CONFIGURATION}     \
