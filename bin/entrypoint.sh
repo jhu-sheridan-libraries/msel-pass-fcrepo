@@ -32,11 +32,12 @@ else
   fi
 fi
 
-OPTS="-Dfcrepo.log=${FCREPO_LOG_LEVEL}					     \
-      -Dfcrepo.home=${FCREPO_HOME}					     \
-      -Dfcrepo.properties.management=${FCREPO_PROPERTIES_MANAGEMENT}	     \
+OPTS="-Dfcrepo.home=${FCREPO_HOME}					     \
+      -Dfcrepo.log=${FCREPO_LOG_LEVEL}
       -Dfcrepo.log.auth=${FCREPO_AUTH_LOG_LEVEL}                             \
+      -Dfcrepo.log.jms=${FCREPO_LOG_JMS}                                     \
       -Dfcrepo.jms.baseUrl=${_JMS_BASEURL}                                   \
+      -Dfcrepo.spring.jms.configuration=${FCREPO_JMS_CONFIGURATION}          \
       -Dfcrepo.modeshape.configuration=${FCREPO_MODESHAPE_CONFIGURATION}     \
       -Dfcrepo.spring.configuration=${FCREPO_SPRING_CONFIGURATION}           \
       -Dfcrepo.postgresql.host=${FCREPO_POSTGRESQL_HOST}                     \
@@ -48,12 +49,12 @@ OPTS="-Dfcrepo.log=${FCREPO_LOG_LEVEL}					     \
       -Dfcrepo.modeshape.index.directory=${FCREPO_MODESHAPE_INDEX_DIRECTORY} \
       -Dfcrepo.object.directory=${FCREPO_OBJECT_DIRECTORY}                   \
       -Dfcrepo.activemq.configuration=${FCREPO_ACTIVEMQ_CONFIGURATION}       \
+      -Dactivemq.connectionfactory=${FCREPO_ACTIVEMQ_CONNECTIONFACTORY}      \
       -Dactivemq.broker.uri=${ACTIVEMQ_BROKER_URI}                           \
       -Dfcrepo.dynamic.jms.port=${FCREPO_JMS_PORT}                           \
       -Dfcrepo.dynamic.stomp.port=${FCREPO_STOMP_PORT}                       \
-      -Daws.bucket=${FCREPO_AWS_BUCKET}                                      \
-      -Daws.secretKey=${FCREPO_AWS_PASSWORD}                                 \
-      -Daws.accessKeyId=${FCREPO_AWS_USER}                                     \
+      -Dfcrepo.properties.management=${FCREPO_PROPERTIES_MANAGEMENT}         \
+      -Dlogback.configurationFile=${FCREPO_LOGBACK_LOCATION}                 \
       -Dcom.arjuna.ats.arjuna.objectstore.objectStoreDir=${ARJUNA_OBJECTSTORE_DIRECTORY}"
 
 if [ -n "${FCREPO_JMX_PORT}" ]

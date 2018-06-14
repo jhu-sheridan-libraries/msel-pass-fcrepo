@@ -1,4 +1,4 @@
-FROM oapass/fcrepo:4.7.5-2.2-SNAPSHOT
+FROM oapass/fcrepo:4.7.5-2.2-SNAPSHOT-5
 
 COPY bin/* /bin/
 COPY lib/* ${CATALINA_HOME}/lib
